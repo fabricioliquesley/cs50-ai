@@ -23,7 +23,7 @@ def player(board):
     """
     Returns player who has the next turn on a board.
     """
-    playerDict = {
+    player_dict = {
         X: 0,
         O: 0,
         EMPTY: 0
@@ -31,11 +31,11 @@ def player(board):
 
     for row in board:
         for col in row:
-            playerDict[col] += 1
+            player_dict[col] += 1
 
-    if playerDict[X] < playerDict[O]:
+    if player_dict[X] < player_dict[O]:
         return X
-    elif playerDict[O] < playerDict[X]:
+    elif player_dict[O] < player_dict[X]:
         return O
     else: 
         return X
@@ -45,7 +45,14 @@ def actions(board):
     """
     Returns set of all possible actions (i, j) available on the board.
     """
-    raise NotImplementedError
+    possible_action = set()
+
+    for i, row in enumerate(board):
+        for j, _ in enumerate(row):
+            if board[i][j] == EMPTY:
+                possible_action.add((i, j))
+
+    return possible_action
 
 
 def result(board, action):
