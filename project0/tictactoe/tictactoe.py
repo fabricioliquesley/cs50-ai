@@ -76,7 +76,30 @@ def winner(board):
     """
     Returns the winner of the game, if there is one.
     """
-    raise NotImplementedError
+    for i, row in enumerate(board):
+        if row[0] == row[1] == row[2] != EMPTY:
+            return row[0]
+
+        X_amount_in_col = 0
+        O_amount_in_col = 0
+        for j in range(3):
+            if board[j][i] == X:
+                X_amount_in_col += 1
+            elif board[j][i] == O:
+                O_amount_in_col += 1
+
+        if X_amount_in_col == 3:
+            return X
+        elif O_amount_in_col == 3:
+            return O
+
+    if board[0][0] == board[1][1] == board[2][2] != EMPTY:
+        return board[0][0]
+
+    if board[0][2] == board[1][1] == board[2][0] != EMPTY:
+        return board[0][2]
+
+    return None
 
 
 def terminal(board):
