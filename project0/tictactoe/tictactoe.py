@@ -59,7 +59,17 @@ def result(board, action):
     """
     Returns the board that results from making move (i, j) on the board.
     """
-    raise NotImplementedError
+    possible_actions = actions(board)
+    is_invalid_action = action not in possible_actions
+
+    if (is_invalid_action):
+        raise RuntimeError("Invalid action")
+
+    copy_of_board = board[:]
+    current_player = player(board)
+
+    copy_of_board[action[0]][action[1]] = current_player
+    return copy_of_board
 
 
 def winner(board):
